@@ -12,7 +12,7 @@ import com.catchsite.beans.JobInfo;
 public interface SchdInfoDao {
 	
 	@Insert("insert into job values(null, #{jobName}, #{salary}, #{workYear}, #{eduBg}, #{loc}, #{companyName},"
-			+ " #{companyFullName}, #{companyInfo}, #{releaseDate}, #{grabDate}, "
+			+ " #{companyFullName}, #{companyType}, #{financingStage}, #{companySize}, #{releaseDate}, #{grabDate}, "
 			+ "#{jobDesc}, #{originSite})")
 	Integer insertJobInfo(JobInfo job);
 	

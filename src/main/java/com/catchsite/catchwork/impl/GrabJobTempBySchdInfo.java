@@ -72,8 +72,11 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 			jobInfo.setEduBg(require[2]);
 			jobInfo.setCompanyName(
 					element.findElement(By.className("company-text")).findElement(By.tagName("a")).getText());
-			jobInfo.setCompanyInfo(
-					element.findElement(By.className("company-text")).findElement(By.tagName("p")).getText());
+			String companyInfo = element.findElement(By.className("company-text")).findElement(By.tagName("p")).getText();
+			String[] comInfo = AnalyzePageTool.splitCompanyInfoForZHIPIN(companyInfo);
+			jobInfo.setCompanyType(comInfo[0]);
+			jobInfo.setFinancingStage(comInfo[1]);
+			jobInfo.setCompanySize(comInfo[2]);
 			jobInfo.setGrabDate(DateUtil.convertDate(new Date()));
 			jobInfo.setOriginSite("bossֱ直聘");
 			jobInfo.setReleaseDate(

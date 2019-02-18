@@ -27,10 +27,13 @@ public class CatchJob implements Job{
 	private SchdInfoDao infoDao;
 	
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		
+		//预计使用GrabJobTempBySchdInfo中方法
 	}
 	
-	
+	/**
+	 * 临时开发测试使用，之后会删除
+	 * @throws IOException
+	 */
 	public void doCatchJob() throws IOException {
 		System.setProperty("webdriver.chrome.driver","D:\\work\\\\爬虫\\chromedriver.exe");
 		WebDriver webDriver = new ChromeDriver();
@@ -39,7 +42,7 @@ public class CatchJob implements Job{
 //			webDriver.get(partUrl + "&page=" + i);
 //			
 //		}
-		webDriver.get("https://www.zhipin.com/c101010100/" + "e_104/" + "?query=java");
+		webDriver.get("https://www.zhipin.com/c101010100-p100101/" + "e_104/");
 		List<WebElement> elements = webDriver.findElements(By.className("job-primary"));
 //		System.out.println(element.getText());
 //		element.click();
@@ -61,7 +64,12 @@ public class CatchJob implements Job{
 			jobInfo.setWorkYear(require[1]);
 			jobInfo.setEduBg(require[2]);
 			jobInfo.setCompanyName(element.findElement(By.className("company-text")).findElement(By.tagName("a")).getText());
-			jobInfo.setCompanyInfo(element.findElement(By.className("company-text")).findElement(By.tagName("p")).getText());
+			
+			String companyInfo = element.findElement(By.className("company-text")).findElement(By.tagName("p")).getText();
+			String[] comInfo = AnalyzePageTool.splitCompanyInfoForZHIPIN(companyInfo);
+			jobInfo.setCompanyType(comInfo[0]);
+			jobInfo.setFinancingStage(comInfo[1]);
+			jobInfo.setCompanySize(comInfo[2]);
 			jobInfo.setGrabDate(DateUtil.convertDate(new Date()));
 			jobInfo.setOriginSite("bossֱ直聘");
 			jobInfo.setReleaseDate(DateUtil.convertGrabDateToMyDate(element.findElement(By.className("info-publis")).findElement(By.tagName("p")).getText()));
@@ -69,8 +77,5 @@ public class CatchJob implements Job{
 		}
 //		System.out.println(elements.size());
 		webDriver.quit();
-	}
-	public static void main(String[] args) throws IOException {
-		new CatchJob().doCatchJob();
 	}
 }

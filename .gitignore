@@ -1,4 +1,11 @@
+# ignore .classpath file
 /.classpath
+
+# ignore .project file
 /.project
+
+# ignore file in .settings directory
 .settings/
+
+# ignore target in target directory
 target/

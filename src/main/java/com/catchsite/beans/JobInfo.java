@@ -9,24 +9,25 @@ public class JobInfo {
 	private String loc;
 	private String companyName;
 	private String companyFullName;
-	private String companyInfo;
+	private String companyType;
+	private String financingStage;
+	private String companySize;
 	private String releaseDate;
 	private String grabDate;
 	private String jobDesc;
 	private String originSite;
 	
-	
-	
 	@Override
 	public String toString() {
 		return "JobInfo [jobId=" + jobId + ", jobName=" + jobName + ", salary=" + salary + ", workYear=" + workYear
 				+ ", eduBg=" + eduBg + ", loc=" + loc + ", companyName=" + companyName + ", companyFullName="
-				+ companyFullName + ", companyInfo=" + companyInfo + ", releaseDate=" + releaseDate + ", grabDate="
-				+ grabDate + ", jobDesc=" + jobDesc + ", originSite=" + originSite + "]";
+				+ companyFullName + ", companyType=" + companyType + ", financingStage=" + financingStage
+				+ ", companySize=" + companySize + ", releaseDate=" + releaseDate + ", grabDate=" + grabDate
+				+ ", jobDesc=" + jobDesc + ", originSite=" + originSite + "]";
 	}
 	public JobInfo(Integer jobId, String jobName, String salary, String workYear, String eduBg, String loc,
-			String companyName, String companyFullName, String companyInfo, String releaseDate, String grabDate,
-			String jobDesc, String originSite) {
+			String companyName, String companyFullName, String companyType, String financingStage, String companySize,
+			String releaseDate, String grabDate, String jobDesc, String originSite) {
 		super();
 		this.jobId = jobId;
 		this.jobName = jobName;
@@ -36,7 +37,9 @@ public class JobInfo {
 		this.loc = loc;
 		this.companyName = companyName;
 		this.companyFullName = companyFullName;
-		this.companyInfo = companyInfo;
+		this.companyType = companyType;
+		this.financingStage = financingStage;
+		this.companySize = companySize;
 		this.releaseDate = releaseDate;
 		this.grabDate = grabDate;
 		this.jobDesc = jobDesc;
@@ -93,11 +96,23 @@ public class JobInfo {
 	public void setCompanyFullName(String companyFullName) {
 		this.companyFullName = companyFullName;
 	}
-	public String getCompanyInfo() {
-		return companyInfo;
+	public String getCompanyType() {
+		return companyType;
 	}
-	public void setCompanyInfo(String companyInfo) {
-		this.companyInfo = companyInfo;
+	public void setCompanyType(String companyType) {
+		this.companyType = companyType;
+	}
+	public String getFinancingStage() {
+		return financingStage;
+	}
+	public void setFinancingStage(String financingStage) {
+		this.financingStage = financingStage;
+	}
+	public String getCompanySize() {
+		return companySize;
+	}
+	public void setCompanySize(String companySize) {
+		this.companySize = companySize;
 	}
 	public String getReleaseDate() {
 		return releaseDate;
