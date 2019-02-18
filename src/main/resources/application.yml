@@ -1,0 +1,13 @@
+mybatis: 
+  configuration:    jdbc-type-for-null: null    map-underscore-to-camel-case: true
+
+spring:
+  datasource:    url: jdbc:mysql://localhost:3306/catchwork?serverTimezone=UTC&useSSL=true&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      maximum-pool-size: 30
+
+myprop:
+  driverPath: D:\\work\\爬虫\\chromedriver.exe
