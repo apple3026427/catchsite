@@ -1,6 +1,7 @@
 package com.catchsite;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,11 +10,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.catchsite.beans.JobInfo;
+import com.catchsite.beans.ScheduleInfo;
+import com.catchsite.beans.ScheduleInfoSites;
+import com.catchsite.catchwork.impl.GrabJobTempBySchdInfo;
 import com.catchsite.dao.SchdInfoDao;
 import com.catchsite.quartz.CatchJob;
 
@@ -21,9 +26,25 @@ import com.catchsite.quartz.CatchJob;
 public class TestController {
 	@Autowired
 	private CatchJob job;
+	
+	@Autowired
+	@Qualifier("grabJobTempBySchdInfo")
+	private GrabJobTempBySchdInfo grabJobTemp;
 
 	@Autowired
 	private SchdInfoDao infoDao;
+	
+	@RequestMapping("/testtemp")
+	@ResponseBody
+	public void testTemp() {
+		ScheduleInfo info = new ScheduleInfo(1, "e_104", null, null, "java", null, null, null, null, null, null, null);
+		List<ScheduleInfoSites> list = new ArrayList<>();
+		ScheduleInfoSites sites = new ScheduleInfoSites(1, "boss", null, 45);
+		list.add(sites);
+		info.setSiteAndUrl(list);
+		//未持久化
+		grabJobTemp.doGrabJob(info);
+	}
 
 	@RequestMapping("/test")
 	@ResponseBody

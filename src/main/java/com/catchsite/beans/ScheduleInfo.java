@@ -1,9 +1,13 @@
 package com.catchsite.beans;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScheduleInfo {
+	//该属性表示定时任务表达式，数据库中无此字段
+	private String cronStr;
 	private Integer infoId;
 	private String workYear;
 	private String eduBg;
@@ -15,9 +19,14 @@ public class ScheduleInfo {
 	private String financingStage;
 	private String companySize;
 	private String releaseDate;
-	private Integer grabPages;
-	private Map<String, Object> siteAndUrl = new HashMap<String, Object>();
+	private List<ScheduleInfoSites> siteAndUrl = new ArrayList<>();
 	private Integer persist; 
+	public String getCronStr() {
+		return cronStr;
+	}
+	public void setCronStr(String cronStr) {
+		this.cronStr = cronStr;
+	}
 	public Integer getInfoId() {
 		return infoId;
 	}
@@ -85,16 +94,10 @@ public class ScheduleInfo {
 	public void setCompanySize(String companySize) {
 		this.companySize = companySize;
 	}
-	public Integer getGrabPages() {
-		return grabPages;
-	}
-	public void setGrabPages(Integer grabPages) {
-		this.grabPages = grabPages;
-	}
 	
 	public ScheduleInfo(Integer infoId, String workYear, String eduBg, String loc, String queryWord, String workType,
 			String companyType, String salary, String financingStage, String companySize, String releaseDate,
-			Integer grabPages, Map<String, Object> siteAndUrl) {
+			List<ScheduleInfoSites> siteAndUrl) {
 		super();
 		this.infoId = infoId;
 		this.workYear = workYear;
@@ -107,7 +110,6 @@ public class ScheduleInfo {
 		this.financingStage = financingStage;
 		this.companySize = companySize;
 		this.releaseDate = releaseDate;
-		this.grabPages = grabPages;
 		this.siteAndUrl = siteAndUrl;
 	}
 	public String getReleaseDate() {
@@ -116,10 +118,10 @@ public class ScheduleInfo {
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public Map<String, Object> getSiteAndUrl() {
+	public List<ScheduleInfoSites> getSiteAndUrl() {
 		return siteAndUrl;
 	}
-	public void setSiteAndUrl(Map<String, Object> siteAndUrl) {
+	public void setSiteAndUrl(List<ScheduleInfoSites> siteAndUrl) {
 		this.siteAndUrl = siteAndUrl;
 	}
 	@Override
@@ -127,7 +129,7 @@ public class ScheduleInfo {
 		return "ScheduleInfo [infoId=" + infoId + ", workYear=" + workYear + ", eduBg=" + eduBg + ", loc=" + loc
 				+ ", queryWord=" + queryWord + ", workType=" + workType + ", companyType=" + companyType + ", salary="
 				+ salary + ", financingStage=" + financingStage + ", companySize=" + companySize + ", releaseDate="
-				+ releaseDate + ", grabPages=" + grabPages + ", siteAndUrl=" + siteAndUrl + ", persist=" + persist
+				+ releaseDate + ", siteAndUrl=" + siteAndUrl + ", persist=" + persist
 				+ "]";
 	}
 	

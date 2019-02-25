@@ -18,4 +18,6 @@ public interface SchdInfoDao {
 	
 	@Select("select * from job")
 	List<JobInfo> selectInfo();
+	
+	Integer insertJobInfoList(List<JobInfo> list);
 }

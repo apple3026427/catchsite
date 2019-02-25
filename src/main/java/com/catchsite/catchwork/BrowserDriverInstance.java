@@ -7,6 +7,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+/**
+ *  从application.yml读取driver路径，
+ *  可获取ChromeDriver实例
+ * @author 王睿
+ */
 @Component
 @ConfigurationProperties("myprop")
 public class BrowserDriverInstance {

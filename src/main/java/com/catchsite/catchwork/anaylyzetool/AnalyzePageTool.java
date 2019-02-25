@@ -38,14 +38,30 @@ public class AnalyzePageTool {
 		Matcher fncStageMatch = fncStagePattern.matcher(companyInfo);
 		boolean matched = fncStageMatch.find();
 		if(!matched) {
-			return null;
+			String companySize = "(\\d+-\\d+人)|\\d+人以上";
+			Pattern pattern = Pattern.compile(companySize);
+			Matcher companySizeMatcher = pattern.matcher(companyInfo);
+			boolean companySizeMatched = companySizeMatcher.find();
+			if(!companySizeMatched) {
+				result[0] =  companyInfo;
+				return result;
+			} else {
+				result[0] = companyInfo.substring(0, companySizeMatcher.start());
+				result[2] = companySizeMatcher.group();
+				return result;
+			}
+		} else {
+			result[0] = companyInfo.substring(0, fncStageMatch.start());
+			result[1] = fncStageMatch.group();
+			result[2] = companyInfo.substring(fncStageMatch.end());
+			return result;
 		}
-		result[0] = companyInfo.substring(0, fncStageMatch.start());
-		result[1] = fncStageMatch.group();
-		result[2] = companyInfo.substring(fncStageMatch.end());
-		return result;
 	}
 	
+	/**
+	 * 测试
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		String string = "北京3-5年本科";
 		String[] re = splitWorkRequireForZHIPIN(string);

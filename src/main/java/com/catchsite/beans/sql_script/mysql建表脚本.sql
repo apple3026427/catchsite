@@ -38,5 +38,6 @@ alter table schedule_info add column persist int(2) not null default 1;
 create table schedule_info_sites(
 info_id int,
 site_name varchar(50),
-site_url varchar(100)
+site_url varchar(100),
+grab_num int(10)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

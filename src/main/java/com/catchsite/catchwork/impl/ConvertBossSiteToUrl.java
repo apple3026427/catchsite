@@ -1,24 +1,29 @@
 package com.catchsite.catchwork.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
 import com.catchsite.beans.ScheduleInfo;
+import com.catchsite.beans.ScheduleInfoSites;
 import com.catchsite.catchwork.ConvertSchdInfoToUrl;
 
 @Component
 public class ConvertBossSiteToUrl implements ConvertSchdInfoToUrl{
 	
 	public void doConvertSchdInfoToUrl(ScheduleInfo info) {
-		Map<String, Object> map = info.getSiteAndUrl();
-		if(map == null) {
-			map = new HashMap<String, Object>();
-			info.setSiteAndUrl(map);
+		List<ScheduleInfoSites> list = info.getSiteAndUrl();
+		for(ScheduleInfoSites infoSites : list) {
+			if(infoSites.getSiteName().equals("boss")) {
+				infoSites.setSiteUrl("http://www.zhipin.com" + constructPart1(info) + constructPart2(info) + constructPart3(info));
+			}
+			if(infoSites.getSiteName().equals("pinkySwear")) {
+				//生成拉勾网url
+			}
 		}
-		map.put("boss", "http://www.zhipin.com" + constructPart1(info) + constructPart2(info) + constructPart3(info));
-//		info.setSiteAndUrl(map);
 	}
 	
 	public String constructPart1(ScheduleInfo info) {

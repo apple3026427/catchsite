@@ -11,23 +11,34 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.quartz.Job;
+import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.catchsite.beans.JobInfo;
+import com.catchsite.beans.ScheduleInfo;
 import com.catchsite.catchwork.anaylyzetool.AnalyzePageTool;
+import com.catchsite.catchwork.impl.GrabJobPersistBySchdInfo;
 import com.catchsite.dao.SchdInfoDao;
 import com.catchsite.utils.DateUtil;
+import com.google.gson.Gson;
 
 @Component
 public class CatchJob implements Job{
 	@Autowired
 	private SchdInfoDao infoDao;
+	@Autowired
+	private GrabJobPersistBySchdInfo grabJobPersist;
 	
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		//预计使用GrabJobTempBySchdInfo中方法
+		JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+		String jsonStr = dataMap.getString("info");
+		Gson gson = new Gson();
+		ScheduleInfo info = gson.fromJson(jsonStr, ScheduleInfo.class);
+		grabJobPersist.doGrabJobPersist(info);
 	}
 	
 	/**
