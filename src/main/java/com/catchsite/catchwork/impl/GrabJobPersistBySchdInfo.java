@@ -26,4 +26,8 @@ public class GrabJobPersistBySchdInfo extends GrabJobTempBySchdInfo{
 		List<JobInfo> infoList =  super.doGrabJob(info);
 		infoDao.insertJobInfoList(infoList);
 	}
+	
+	public void forTest() {
+		System.out.println("in grabJobPersist```````````");
+	}
 }

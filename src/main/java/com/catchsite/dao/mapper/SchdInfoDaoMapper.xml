@@ -6,11 +6,11 @@
 		<foreach collection="list" item="item" index="index"
 			separator=",">
 			(
-				(null, #{item.jobName}, #{item.salary}, #{item.workYear}, #{item.eduBg},
+				null, #{item.jobName}, #{item.salary}, #{item.workYear}, #{item.eduBg},
 				#{item.loc}, #{item.companyName},
 				#{item.companyFullName}, #{item.companyType},
 				#{item.financingStage}, #{item.companySize}, #{item.releaseDate}, #{item.grabDate},
-				#{item.jobDesc}, #{item.originSite})
+				#{item.jobDesc}, #{item.originSite}
 			)
 		</foreach>
 	</insert>

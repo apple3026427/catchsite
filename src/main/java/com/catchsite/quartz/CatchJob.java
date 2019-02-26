@@ -1,8 +1,6 @@
 package com.catchsite.quartz;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import com.catchsite.beans.JobInfo;
 import com.catchsite.beans.ScheduleInfo;
 import com.catchsite.catchwork.anaylyzetool.AnalyzePageTool;
 import com.catchsite.catchwork.impl.GrabJobPersistBySchdInfo;
+import com.catchsite.config.SpringContextUtil;
 import com.catchsite.dao.SchdInfoDao;
 import com.catchsite.utils.DateUtil;
 import com.google.gson.Gson;
@@ -29,8 +28,9 @@ import com.google.gson.Gson;
 public class CatchJob implements Job{
 	@Autowired
 	private SchdInfoDao infoDao;
-	@Autowired
-	private GrabJobPersistBySchdInfo grabJobPersist;
+	
+//	@Autowired
+//	private GrabJobPersistBySchdInfo grabJobPersist;
 	
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		//预计使用GrabJobTempBySchdInfo中方法
@@ -38,6 +38,7 @@ public class CatchJob implements Job{
 		String jsonStr = dataMap.getString("info");
 		Gson gson = new Gson();
 		ScheduleInfo info = gson.fromJson(jsonStr, ScheduleInfo.class);
+		GrabJobPersistBySchdInfo grabJobPersist = (GrabJobPersistBySchdInfo) SpringContextUtil.getBean("grabJobPersistBySchdInfo");
 		grabJobPersist.doGrabJobPersist(info);
 	}
 	

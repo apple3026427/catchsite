@@ -95,10 +95,15 @@ public class ScheduleInfo {
 		this.companySize = companySize;
 	}
 	
-	public ScheduleInfo(Integer infoId, String workYear, String eduBg, String loc, String queryWord, String workType,
-			String companyType, String salary, String financingStage, String companySize, String releaseDate,
-			List<ScheduleInfoSites> siteAndUrl) {
+	
+	public ScheduleInfo() {
 		super();
+	}
+	public ScheduleInfo(String cronStr, Integer infoId, String workYear, String eduBg, String loc, String queryWord,
+			String workType, String companyType, String salary, String financingStage, String companySize,
+			String releaseDate, List<ScheduleInfoSites> siteAndUrl, Integer persist) {
+		super();
+		this.cronStr = cronStr;
 		this.infoId = infoId;
 		this.workYear = workYear;
 		this.eduBg = eduBg;
@@ -111,6 +116,7 @@ public class ScheduleInfo {
 		this.companySize = companySize;
 		this.releaseDate = releaseDate;
 		this.siteAndUrl = siteAndUrl;
+		this.persist = persist;
 	}
 	public String getReleaseDate() {
 		return releaseDate;

@@ -37,7 +37,7 @@ public class TestController {
 	@RequestMapping("/testtemp")
 	@ResponseBody
 	public void testTemp() {
-		ScheduleInfo info = new ScheduleInfo(1, "e_104", null, null, "java", null, null, null, null, null, null, null);
+		ScheduleInfo info = new ScheduleInfo(null, 1, "e_104", null, null, "java", null, null, null, null, null, null, null, null);
 		List<ScheduleInfoSites> list = new ArrayList<>();
 		ScheduleInfoSites sites = new ScheduleInfoSites(1, "boss", null, 45);
 		list.add(sites);

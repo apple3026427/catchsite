@@ -33,6 +33,7 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 		List<JobInfo> jobList = new ArrayList<JobInfo>();
 		//把info中的boss直聘根据要求转化为url
 		convertBossSiteToUrl.doConvertSchdInfoToUrl(info);
+		System.out.println("info = " + info);
 		//抓取boss直聘相关信息
 		grabBossSiteJob(info, jobList);
 		//待补充  ： 预计在此调用抓取拉勾网的方法
@@ -52,6 +53,7 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 	 * @param jobList 抓取到的信息放到该list中
 	 */
 	public void grabBossSiteJob(ScheduleInfo info, List<JobInfo> jobList) {
+		System.out.println("info = " + info);
 		webDriver = browserDriverInstance.getWebDriver();
 		ScheduleInfoSites bossSite = null;
 		for(ScheduleInfoSites infoSites  :  info.getSiteAndUrl()) {
@@ -64,7 +66,10 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 			return ;
 		}
 		//需要抓取的数量
-		int grabNum = bossSite.getGrabNum();
+		Integer grabNum = bossSite.getGrabNum();
+		if(grabNum == null) {
+			grabNum = 100;
+		}
 		//boss直聘最多只能显示10页共300条招聘信息
 		grabNum = grabNum > 300 ? 300 : grabNum;
 		//30是boss直聘pageSize

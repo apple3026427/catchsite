@@ -1,4 +1,5 @@
 mybatis: 
+  mapper-locations: classpath:com/catchsite/dao/mapper/*.xml
   configuration:    jdbc-type-for-null: null    map-underscore-to-camel-case: true
 
 spring:

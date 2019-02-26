@@ -28,6 +28,13 @@
 			<version>2.1.2.RELEASE</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+<!-- 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.1.4.RELEASE</version>
+		</dependency> -->
+
 		<!-- selenium依赖 -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
