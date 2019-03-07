@@ -10,8 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.quartz.JobKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,21 +25,26 @@ import com.catchsite.config.SpringContextUtil;
 import com.catchsite.dao.SchdInfoDao;
 import com.catchsite.utils.DateUtil;
 import com.google.gson.Gson;
-
+/**
+ * quartz定时任务，每天固定时间执行，并进行统计入库
+ * 
+ * @author 王睿
+ * @date 2019年3月7日 下午2:02:30
+ */
 @Component
-public class CatchJob implements Job{
+public class SystemCatchJob implements Job{
 	@Autowired
 	private SchdInfoDao infoDao;
 	
-//	@Autowired
-//	private GrabJobPersistBySchdInfo grabJobPersist;
-	
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		//预计使用GrabJobTempBySchdInfo中方法
-		JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+		JobDetail jobDetail = context.getJobDetail();
+		JobDataMap dataMap = jobDetail.getJobDataMap();
 		String jsonStr = dataMap.getString("info");
 		Gson gson = new Gson();
 		ScheduleInfo info = gson.fromJson(jsonStr, ScheduleInfo.class);
+		JobKey jobKey = jobDetail.getKey();
+		info.setTaskId(jobKey.getGroup() + jobKey.getName());
 		GrabJobPersistBySchdInfo grabJobPersist = (GrabJobPersistBySchdInfo) SpringContextUtil.getBean("grabJobPersistBySchdInfo");
 		grabJobPersist.doGrabJobPersist(info);
 	}

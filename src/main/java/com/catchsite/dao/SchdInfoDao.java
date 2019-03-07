@@ -13,7 +13,7 @@ public interface SchdInfoDao {
 	
 	@Insert("insert into job values(null, #{jobName}, #{salary}, #{workYear}, #{eduBg}, #{loc}, #{companyName},"
 			+ " #{companyFullName}, #{companyType}, #{financingStage}, #{companySize}, #{releaseDate}, #{grabDate}, "
-			+ "#{jobDesc}, #{originSite})")
+			+ "#{jobDesc}, #{originSite}, #{username}, #{taskId})")
 	Integer insertJobInfo(JobInfo job);
 	
 	@Select("select * from job")

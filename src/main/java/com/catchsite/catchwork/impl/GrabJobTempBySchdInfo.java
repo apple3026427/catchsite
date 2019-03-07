@@ -3,7 +3,6 @@ package com.catchsite.catchwork.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -68,7 +67,7 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 		//需要抓取的数量
 		Integer grabNum = bossSite.getGrabNum();
 		if(grabNum == null) {
-			grabNum = 100;
+			grabNum = 300;
 		}
 		//boss直聘最多只能显示10页共300条招聘信息
 		grabNum = grabNum > 300 ? 300 : grabNum;
@@ -76,12 +75,15 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 		int grabPage = grabNum %30 == 0 ? grabNum/30 : grabNum/30 + 1;
 		//已经抓取的数量
 		int grabedNum = 0;
+		System.out.println("grabPage=" + grabPage + ", grabNum = " + grabNum);
 		//循环翻页
 		for(int i = 0; i<grabPage; i++) {
+			
 			webDriver.get(bossSite.getSiteUrl() + "&page=" + (i + 1));
 			//获取该页和job相关的标签集合
 			List<WebElement> elements = webDriver.findElements(By.className("job-primary"));
 			for (WebElement element : elements) {
+				System.out.println("already grabed = " + grabedNum);
 				if (grabedNum == grabNum) {
 					break;
 				}
@@ -110,6 +112,7 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 				jobInfo.setOriginSite("bossֱ直聘");
 				jobInfo.setReleaseDate(
 						DateUtil.convertGrabDateToMyDate(element.findElement(By.className("info-publis")).findElement(By.tagName("p")).getText()));
+				jobInfo.setTaskId(info.getTaskId());
 				System.out.println(jobInfo);
 				jobList.add(jobInfo);
 			}
@@ -118,5 +121,6 @@ public class GrabJobTempBySchdInfo implements GrabJobByScheduleInfo {
 				break;
 			}
 		}
+		webDriver.quit();
 	}
 }

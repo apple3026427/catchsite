@@ -45,6 +45,7 @@ public class ConvertBossSiteToUrl implements ConvertSchdInfoToUrl{
 	
 	public String constructPart3(ScheduleInfo info) {
 		String queryWord = info.getQueryWord() == null ? "" : info.getQueryWord();
-		return "/?query=" + queryWord;
+		String period = info.getPeriod() == null? "" : info.getPeriod();
+		return "/?query=" + queryWord + "&period=" + period;
 	}
 }

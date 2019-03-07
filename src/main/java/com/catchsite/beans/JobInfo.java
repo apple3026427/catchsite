@@ -16,7 +16,23 @@ public class JobInfo {
 	private String grabDate;
 	private String jobDesc;
 	private String originSite;
+	//该抓取任务的发布人,为空表示为系统任务
+	private String username;
+	//该次任务id
+	private String taskId;
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
 	@Override
 	public String toString() {
 		return "JobInfo [jobId=" + jobId + ", jobName=" + jobName + ", salary=" + salary + ", workYear=" + workYear

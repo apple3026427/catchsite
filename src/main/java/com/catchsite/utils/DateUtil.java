@@ -8,13 +8,19 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import java.text.SimpleDateFormat;
 
 public class DateUtil {
+	/**
+	 * date转字符串
+	 * @param date
+	 * @return
+	 */
 	public static String convertDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		return sdf.format(date);
 	}
 	
 	/**
-	 * 日期格式为 发布于昨天、发布与MM月dd日、发布与mm:ss
+	 * 日期格式为  发布于昨天、发布与MM月dd日、发布与mm:ss
+	 * 将之转换为yyyy-MM-dd hh:mm:ss格式的字符串
 	 * @param grabDate
 	 * @return
 	 */

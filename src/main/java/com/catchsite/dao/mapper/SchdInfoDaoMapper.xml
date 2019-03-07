@@ -10,7 +10,7 @@
 				#{item.loc}, #{item.companyName},
 				#{item.companyFullName}, #{item.companyType},
 				#{item.financingStage}, #{item.companySize}, #{item.releaseDate}, #{item.grabDate},
-				#{item.jobDesc}, #{item.originSite}
+				#{item.jobDesc}, #{item.originSite}, #{item.username}, #{item.taskId}
 			)
 		</foreach>
 	</insert>

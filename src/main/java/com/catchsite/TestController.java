@@ -20,12 +20,12 @@ import com.catchsite.beans.ScheduleInfo;
 import com.catchsite.beans.ScheduleInfoSites;
 import com.catchsite.catchwork.impl.GrabJobTempBySchdInfo;
 import com.catchsite.dao.SchdInfoDao;
-import com.catchsite.quartz.CatchJob;
+import com.catchsite.quartz.SystemCatchJob;
 
 @Controller
 public class TestController {
 	@Autowired
-	private CatchJob job;
+	private SystemCatchJob job;
 	
 	@Autowired
 	@Qualifier("grabJobTempBySchdInfo")

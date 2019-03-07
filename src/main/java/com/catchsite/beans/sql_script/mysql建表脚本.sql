@@ -15,7 +15,9 @@ company_size varchar(50),
 release_date VARCHAR(50) not null,
 grab_date varchar(50) not null,
 job_desc VARCHAR(1000),
-origin_site VARCHAR(50) not null
+origin_site VARCHAR(50) not null,
+username VARCHAR(50),
+task_id VARCHAR(100)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table schedule_info(
@@ -41,3 +43,22 @@ site_name varchar(50),
 site_url varchar(100),
 grab_num int(10)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table job_stcs(
+job_stcs_id int PRIMARY key auto_increment ,
+e_102count int(10),
+e_103count int(10),
+e_104count int(10),
+e_105count int(10),
+e_106count int(10),
+e_107count int(10),
+total_count int(15),
+avg_e102_sal int(10),
+avg_e103_sal int(10),
+avg_e104_sal int(10),
+avg_e105_sal int(10),
+avg_e106_sal int(10),
+avg_e107_sal int(10),
+avg_salary int(10),
+count_date varchar(20)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;;
