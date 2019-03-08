@@ -46,7 +46,6 @@ public class GrabJobPersistBySchdInfo extends GrabJobTempBySchdInfo{
 		}
 		System.out.println(list.size());
 		JobStatistics statistics = CountWork.countJob(list);
-		System.out.println("statistics = " + statistics);
 		statistcsDao.saveStcs(statistics);
 	}
 }
